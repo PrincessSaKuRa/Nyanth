@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nyanth.HAC</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #output {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Nyanth Notify</h1>
+    <form id="notifyForm">
+      <input type="text" id="message" placeholder="メッセージを入力してください">
+      <textarea id="output" rows="5" placeholder="ここに送信したメッセージが表示されます" readonly></textarea>
+      <input type="submit" value="送信">
+    </form>
+  </div>
+
+  <script>
+    // フォーム送信時の処理
+    document.getElementById('notifyForm').addEventListener('submit', function (e) {
+      e.preventDefault(); // フォームのデフォルトの送信をキャンセル
+
+      var message = document.getElementById('message').value;
+
+      // Line Notifyにメッセージを送信
+      sendLineNotify(message);
+    });
+
+    // Line Notifyへのメッセージ送信
+    function sendLineNotify(message) {
+      var xhr = new XMLHttpRequest();
+      var url = 'https://notify-api.line.me/api/notify';
+      var token = 'ji84E2IXqnrf8b9pHSA3OlGT43fhI2m7tnYZUAbcqmH'; // 自分のアクセストークンに置き換える
+      var params = 'message=' + encodeURIComponent(message);
+
+      xhr.open('POST', url, true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          // 送信成功時の処理
+          document.getElementById('output').value = 'メッセージが送信されました: ' + message;
+        }
+      };
+
+      xhr.send(params);
+    }
+  </script>
+</body>
+</html>
