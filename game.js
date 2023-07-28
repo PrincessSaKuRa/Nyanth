@@ -44,9 +44,9 @@ function clickButton(button, isWin) {
 function showResult() {
     const result = document.getElementById('result');
     if (score >= targetScore) {
-        result.innerText = `Congratulations! Your code is: ${winningCode}`;
+        result.innerText = `成功だよ！秘密のぱすわーど: ${winningCode}`;
     } else {
-        result.innerText = 'Sorry, you didn\'t reach the target score.';
+        result.innerText = '残念！ギブスにされちゃった';
     }
 }
 
