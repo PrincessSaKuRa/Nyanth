@@ -1,7 +1,7 @@
 let score = 0;
 let buttonClickCount = 0;
 const targetScore = 6;
-const winningCode = 8272;
+const winningCode = 3923;
 const totalButtons = 20;
 const winButtons = 10;
 
