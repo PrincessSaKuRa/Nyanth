@@ -1,6 +1,6 @@
 let score = 0;
 let buttonClickCount = 0;
-const targetScore = 8;
+const targetScore = 6;
 const winningCode = 8272;
 const totalButtons = 20;
 const winButtons = 10;
