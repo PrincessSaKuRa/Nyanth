@@ -30,7 +30,7 @@ function clickButton(button, isWin) {
         score++;
         button.style.backgroundImage = 'url("payusa.png")';
     } else {
-        score--;
+        score -0.5;
         button.style.backgroundImage = 'url("gibsusa.png")';
     }
     button.onclick = null;
