@@ -3,9 +3,8 @@ let buttonClickCount = 0;
 const targetScore = 8;
 const winningCode = 8272;
 const totalButtons = 20;
-const winButtons = 10; // 50% win rate
+const winButtons = 10;
 
-// initialize the game board
 function initGame() {
     const gameboard = document.getElementById('gameboard');
     gameboard.innerHTML = '';
@@ -13,20 +12,20 @@ function initGame() {
     for (let i = 0; i < totalButtons; i++) {
         buttons.push(i < winButtons);
     }
-    buttons.sort(() => Math.random() - 0.5); // shuffle the buttons
+    buttons.sort(() => Math.random() - 0.5);
 
     for (let i = 0; i < totalButtons; i++) {
         const button = document.createElement('div');
-        button.className = 'button hidden';
+        button.className = 'button button-before-click';
         button.onclick = () => clickButton(button, buttons[i]);
         gameboard.appendChild(button);
     }
 }
 
-// handle the button click event
 function clickButton(button, isWin) {
     buttonClickCount++;
     button.classList.remove('hidden');
+    button.classList.remove('button-before-click');
     if (isWin) {
         score++;
         button.style.backgroundImage = 'url("payusa.png")';
@@ -34,7 +33,7 @@ function clickButton(button, isWin) {
         score--;
         button.style.backgroundImage = 'url("gibsusa.png")';
     }
-    button.onclick = null; // disable further clicking
+    button.onclick = null;
     document.getElementById('score').innerText = `Score: ${score}`;
 
     if (buttonClickCount === 10) {
@@ -42,7 +41,6 @@ function clickButton(button, isWin) {
     }
 }
 
-// show the game result
 function showResult() {
     const result = document.getElementById('result');
     if (score >= targetScore) {
@@ -52,7 +50,6 @@ function showResult() {
     }
 }
 
-// start button onclick event
 document.getElementById('startButton').onclick = () => {
     score = 0;
     buttonClickCount = 0;
