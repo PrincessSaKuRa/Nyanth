@@ -29,10 +29,10 @@ function clickButton(button, isWin) {
     button.classList.remove('hidden');
     if (isWin) {
         score++;
-        button.style.backgroundImage = 'url("win.png")';
+        button.style.backgroundImage = 'url("payusa.png")';
     } else {
         score--;
-        button.style.backgroundImage = 'url("lose.png")';
+        button.style.backgroundImage = 'url("gibsusa.png")';
     }
     button.onclick = null; // disable further clicking
     document.getElementById('score').innerText = `Score: ${score}`;
